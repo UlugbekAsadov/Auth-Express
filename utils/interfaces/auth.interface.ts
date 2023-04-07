@@ -9,3 +9,8 @@ export interface IUser {
   updatedAt?: Date;
   _id?: string;
 }
+
+export interface ILoginForm {
+  email: string;
+  password: string;
+}
