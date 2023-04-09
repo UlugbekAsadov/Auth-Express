@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import { ILoginForm, IUser } from "../utils/interfaces";
+import { ILoginForm } from "../utils/interfaces";
 import { User } from "../models/user.model";
-import { ErrorMessages } from "../utils/enums";
+import { ErrorMessages, SuccessMessages } from "../utils/enums";
 import { UserRequiredFields } from "../utils/types";
 import { asyncHandler } from "../middlewares/async.handler";
 import { ErrorResponse } from "../utils/error-response";
@@ -10,14 +10,14 @@ import bcrypt from "bcrypt";
 import { jwtGenerate } from "../utils/jwt.generate";
 
 // @method    POST
-// @route     /api/v1/user
+// @route     /api/v1/auth/register
 // @desc      register User
 export const createUser = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const { email, password, firstName, lastName, age, phoneNumber } = req.body;
 
     try {
-      const user: IUser = {
+      const user = {
         email,
         password,
         firstName,
@@ -53,6 +53,7 @@ export const createUser = asyncHandler(
       res.status(201).json({
         success: true,
         body: aviableUser,
+        message: SuccessMessages.UserCreated,
         token,
       });
     } catch (error) {
@@ -65,7 +66,7 @@ export const createUser = asyncHandler(
 );
 
 // @method    POST
-// @route     /api/v1/user
+// @route     /api/v1/auth/login
 // @desc      login User
 export const loginUser = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -106,6 +107,10 @@ export const loginUser = asyncHandler(
     const token = jwtGenerate(user._id.toString(), user.firstName);
 
     // success
-    res.status(200).json({ success: true, data: user, token });
+    res.status(200).json({
+      success: true,
+      data: user,
+      token,
+    });
   }
 );
