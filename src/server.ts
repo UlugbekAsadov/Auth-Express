@@ -1,8 +1,8 @@
 import express, { Express } from "express";
 import dotenv from "dotenv";
 import { connectDB } from "../config/db";
+import authRouter from "../routes/auth.router";
 import { errorHandler } from "../middlewares/error-handler";
-import { authRouter, usersRouter } from "../routes";
 
 dotenv.config();
 const port = process.env.PORT;
@@ -13,9 +13,6 @@ app.use(express.urlencoded({ extended: false }));
 
 // Auth
 app.use("/api/v1/auth", authRouter);
-
-// Users
-app.use("/api/v1/users", usersRouter);
 
 // Error Handler
 app.use(errorHandler);

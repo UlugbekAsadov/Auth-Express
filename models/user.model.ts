@@ -29,14 +29,6 @@ const userSchema = new mongoose.Schema(
       minLength: 6,
       maxLength: 50,
     },
-    isActive: {
-      type: Boolean,
-      default: true,
-    },
-    roles: {
-      type: [String],
-      default: ['BASIC']
-    },
   },
   {
     timestamps: true,
