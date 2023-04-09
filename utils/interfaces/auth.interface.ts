@@ -5,6 +5,8 @@ export interface IUser {
   phoneNumber: string;
   age: number;
   password: string;
+  isActive: boolean,
+  roles: string[],
   createdAt?: Date;
   updatedAt?: Date;
   _id?: string;
