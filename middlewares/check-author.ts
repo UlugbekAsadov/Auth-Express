@@ -8,9 +8,7 @@ export const checkAuthor = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const authenticatedUserId = res.locals.user._id;
     const postId = req.params.id;
-    console.log(authenticatedUserId)
     const post = await Post.findById(postId);
-    console.log(postId)
 
     if (authenticatedUserId !== post?.author._id.toString()) {
       return next(new ErrorResponse(ErrorMessages.NotAuthor, 403));
