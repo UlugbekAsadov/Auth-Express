@@ -15,7 +15,8 @@ export const validateToken = asyncHandler(
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY as Secret);
 
-    (req as CustomRequest).token = decoded;
+    // (req as CustomRequest).token = decoded;
+    res.locals.user = decoded
 
     next();
   }

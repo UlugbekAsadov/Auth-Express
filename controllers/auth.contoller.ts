@@ -53,7 +53,7 @@ export const createUser = asyncHandler(
       res.status(201).json({
         success: true,
         body: aviableUser,
-        message: SuccessMessages.UserCreated,
+        message: SuccessMessages.Created,
         token,
       });
     } catch (error) {

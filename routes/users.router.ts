@@ -14,4 +14,3 @@ usersRouter.put("/:userId", validateToken, updateUser);
 usersRouter.delete("/:userId", validateToken, deleteUser);
 
 export { usersRouter };
-ca

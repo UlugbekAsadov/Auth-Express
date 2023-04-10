@@ -2,7 +2,7 @@ import express, { Express } from "express";
 import dotenv from "dotenv";
 import { connectDB } from "../config/db";
 import { errorHandler } from "../middlewares/error-handler";
-import { authRouter, usersRouter } from "../routes";
+import { authRouter, usersRouter, postsRouter } from "../routes";
 
 dotenv.config();
 const port = process.env.PORT;
@@ -16,6 +16,9 @@ app.use("/api/v1/auth", authRouter);
 
 // Users
 app.use("/api/v1/users", usersRouter);
+
+// Posts
+app.use("/api/v1/posts", postsRouter);
 
 // Error Handler
 app.use(errorHandler);

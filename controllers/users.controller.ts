@@ -64,7 +64,7 @@ export const updateUser = asyncHandler(
     res.status(200).json({
       success: true,
       data: updatedUser,
-      message: SuccessMessages.UserUpdated,
+      message: SuccessMessages.Updated,
     });
   }
 );
@@ -86,6 +86,6 @@ export const deleteUser = asyncHandler(
 
     res
       .status(200)
-      .json({ success: true, message: SuccessMessages.UserDeleted });
+      .json({ success: true, message: SuccessMessages.Deleted });
   }
 );
